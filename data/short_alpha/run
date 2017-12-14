@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ "${1}" == "clean" ]; then
+  rm -rf short_alpha.psf short_alpha.dmdgp short_alpha.pdb
+  exit
+fi
+
+../../bin/ibp-ng -v -v \
+ --input short_alpha.fa \
+ --psf short_alpha.psf \
+ --dmdgp short_alpha.dmdgp \
+ --output short_alpha.pdb \
+ --format pdb \
+ --restraints short_alpha.res \
+ --topology ../../lib/ibp-protein.top \
+ --params ../../lib/ibp-protein.par \
+ --reorder ../../lib/ibp-protein2.ord \
+ --threads 1 \
+ --method dist,dihe,impr \
+ --branch-eps 0.01 --branch-max 50 --vdw-scale 0.5  --limit 20000 
+
+
