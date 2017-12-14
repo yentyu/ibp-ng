@@ -1,12 +1,12 @@
 #!/bin/bash
 
 if [ "${1}" == "clean" ]; then
-  rm -rf alpha.pdb alpha.dmdgp alpha.dcd
+  rm -rf alpha.psf alpha.dmdgp alpha.pdb
   exit
 fi
 
 ../../bin/ibp-ng -v -v \
- --input alpha.fa \
+ --input alpha2.fa \
  --psf alpha.psf \
  --dmdgp alpha.dmdgp \
  --output alpha.pdb \
@@ -14,8 +14,8 @@ fi
  --restraints alpha.res \
  --topology ../../lib/ibp-protein.top \
  --params ../../lib/ibp-protein.par \
- --reorder ../../lib/ibp-protein.ord \
+ --reorder ../../lib/ibp-protein2.ord \
  --threads 1 \
  --method dist,impr,dihe \
- --limit 1000 --branch-eps 0.04 --branch-max 128 --vdw-scale 0.5
+ --limit 10000 --branch-eps 0.01 --branch-max 128 --vdw-scale 0.5
 
