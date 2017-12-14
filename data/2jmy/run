@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ "${1}" == "clean" ]; then
+  rm -rf 2jmy.pdb 2jmy.dmdgp 2jmy.psf
+  exit
+fi
+
+../../bin/ibp-ng -v -v \
+ --input 2jmy.fa \
+ --psf 2jmy.psf \
+ --dmdgp 2jmy.dmdgp \
+ --output 2jmy.pdb \
+ --format pdb \
+ --restraints 2jmy.res \
+ --topology ../../lib/ibp-protein.top \
+ --params ../../lib/ibp-protein.par \
+ --reorder ../../lib/ibp-protein2.ord \
+ --threads 1 \
+ --method dist \
+ --limit 10000 --branch-eps 0.15 --branch-max 50 --vdw-scale 0.5
+
